@@ -17,7 +17,7 @@ module Prometheus
         SEPARATOR = ','
         DELIMITER = "\n"
 
-        REGEX   = { doc: /[\n\\]/, label: /[\n\\"]/ }
+        REGEX   = { :doc => /[\n\\]/, :label => /[\n\\"]/ }
         REPLACE = { "\n" => '\n', '\\' => '\\\\', '"' => '\"' }
 
         def self.marshal(registry)

@@ -28,9 +28,9 @@ module Prometheus
 
         DEFAULT_LABEL_BUILDER = proc do |env|
           {
-            method: env['REQUEST_METHOD'].downcase,
-            host:   env['HTTP_HOST'].to_s,
-            path:   env['PATH_INFO'].to_s,
+            :method => env['REQUEST_METHOD'].downcase,
+            :host =>   env['HTTP_HOST'].to_s,
+            :path =>   env['PATH_INFO'].to_s,
           }
         end
 
@@ -59,7 +59,7 @@ module Prometheus
             record(labels(env, response), duration)
           end
         rescue => exception
-          @exceptions.increment(exception: exception.class.name)
+          @exceptions.increment(:exception => exception.class.name)
           raise
         end
 
